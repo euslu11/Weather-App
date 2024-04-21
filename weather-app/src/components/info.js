@@ -1,6 +1,6 @@
 import { WiSunset } from "react-icons/wi";
 
-function Info({ info, state }) {
+const Info = ({ info, state }) => {
   return (
     <div>
       {state ? (
@@ -19,6 +19,6 @@ function Info({ info, state }) {
       ) : null}
     </div>
   );
-}
+};
 
 export { Info };

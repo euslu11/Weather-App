@@ -3,7 +3,7 @@ import Form from "./components/form";
 import { Info } from "./components/info";
 import "./style.css";
 
-function App() {
+const App = () => {
   const [info, setInfo] = useState([]);
   const [state, setState] = useState(false);
 
@@ -13,6 +13,6 @@ function App() {
       <Info info={info} state={state} />
     </div>
   );
-}
+};
 
 export default App;

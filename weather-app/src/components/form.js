@@ -1,14 +1,26 @@
 import { useState } from "react";
 import axios from "axios";
 
-export default function Form({ setInfo, setState }) {
+const Form = ({ setInfo, setState }) => {
   const [city, setCity] = useState("");
+  const [error, setError] = useState("");
 
   const handleChange = async () => {
+    if (!city) {
+      setError("Lütfen bir şehir giriniz.");
+      return;
+    }
+
     const api = "88b1c9a7ab4b0dbdb90cb07dc370a73b";
     const baseURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api}&units=metric&lang=tr`;
-    await axios(baseURL).then((res) => setInfo(res.data));
-    setState(true);
+
+    try {
+      const res = await axios(baseURL);
+      setInfo(res.data);
+      setState(true);
+    } catch (error) {
+      alert("Geçersiz Lokasyon.!");
+    }
   };
 
   return (
@@ -35,6 +47,8 @@ export default function Form({ setInfo, setState }) {
           </div>
         </div>
       </form>
+      {error && <div className="error">{error}</div>}
     </div>
   );
-}
+};
+export default Form;
